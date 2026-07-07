@@ -400,7 +400,6 @@ const initializeWebsite = () => {
         // Preload skipped frames
         framesToDownload.forEach(frameIndex => {
             const img = new Image();
-            img.src = getFramePath(frameIndex);
             img.onload = () => {
                 images[frameIndex] = img;
                 loadedCount++;
@@ -429,6 +428,7 @@ const initializeWebsite = () => {
                     if (loader) loader.classList.add('fade-out');
                 }
             };
+            img.src = getFramePath(frameIndex);
         });
 
         // Set initial screen layout
