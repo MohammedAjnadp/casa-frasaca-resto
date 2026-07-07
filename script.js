@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+const initializeWebsite = () => {
     // -------------------------------------------------------------------------
     // 1. Menu Implementation with Rich Categories, Search, and Animations
     // -------------------------------------------------------------------------
@@ -333,7 +333,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Path generator for files
         const getFramePath = index => {
-            return `images/hero section/ezgif-frame-${index.toString().padStart(3, '0')}.png`;
+            return `/images/hero section/ezgif-frame-${index.toString().padStart(3, '0')}.png`;
         };
 
         // Render function based on current scroll position
@@ -710,4 +710,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-});
+};
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeWebsite);
+} else {
+    initializeWebsite();
+}
