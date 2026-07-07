@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casa Fresco | Premium All-Day Dining & Rooftop Café in HSR Layout</title>
+    <meta name="description" content="Experience coastal sophistication at Casa Fresco in HSR Layout, Bengaluru. Premium rooftop dining, gourmet pastas, handcrafted wood-fired pizzas, and signature drinks in an elegant atmosphere.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Premium Loader -->
+    <div id="loader" class="loader-container">
+        <div class="loader-content">
+            <svg class="loader-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <path d="M30 20 h25 c15 0, 25 8, 25 20 c0 10 -6 16 -14 18 l16 22 h-18 l-13 -19 h-11 v19 h-10 z m10 10 v20 h15 c8 0, 14 -4, 14 -10 c0 -6 -6 -10 -14 -10 z" fill="currentColor"/>
+            </svg>
+            <div class="loader-bar-bg">
+                <div id="loader-progress" class="loader-bar-fill"></div>
+            </div>
+            <p class="loader-text">Loading Experience... <span id="loader-percentage">0%</span></p>
+        </div>
+    </div>
+
+    <!-- Main Navigation Bar -->
+    <nav class="navbar" id="main-navbar">
+        <div class="nav-content">
+            <a href="#" class="logo-container">
+                <svg class="r-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M30 20 h25 c15 0, 25 8, 25 20 c0 10 -6 16 -14 18 l16 22 h-18 l-13 -19 h-11 v19 h-10 z m10 10 v20 h15 c8 0, 14 -4, 14 -10 c0 -6 -6 -10 -14 -10 z" fill="currentColor"/>
+                </svg>
+                <span class="logo-text">Casa Fresco</span>
+            </a>
+            
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#about" class="smooth-scroll">About</a></li>
+                <li><a href="#menu" class="smooth-scroll">Menu</a></li>
+                <li><a href="#reserve" class="smooth-scroll">Reservations</a></li>
+                <li><a href="#testimonials" class="smooth-scroll">Reviews</a></li>
+                <li><a href="#location" class="smooth-scroll">Contact</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <a href="#reserve" class="btn btn-nav btn-primary-gold smooth-scroll">Book Table</a>
+                <button class="mobile-nav-toggle" id="mobile-toggle" aria-label="Toggle navigation">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Interactive Hero Canvas Scroll Section -->
+    <section id="hero-scroll" class="hero-scroll-container">
+        <div class="sticky-container">
+            <canvas id="hero-canvas"></canvas>
+            <div class="hero-overlay"></div>
+            
+            <div class="scroll-text-container">
+                <div class="scroll-step" data-step="1">
+                    <span class="step-badge">Rooftop Cafe & Lounge</span>
+                    <h1>Coastal<br><span class="accent-text">Sophistication</span></h1>
+                    <p>Premium All-Day Dining in the Heart of HSR Layout</p>
+                    <div class="scroll-indicator">
+                        <span>Scroll to Explore</span>
+                        <div class="mouse-icon">
+                            <div class="wheel"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="scroll-step" data-step="2">
+                    <span class="step-badge">Sensory Dining</span>
+                    <h2>Immersive<br><span class="accent-text">Atmosphere</span></h2>
+                    <p>Experience exquisite flavors with breathtaking panoramic views.</p>
+                </div>
+                <div class="scroll-step" data-step="3">
+                    <span class="step-badge">Gastronomy</span>
+                    <h2>Handcrafted<br><span class="accent-text">Elegance</span></h2>
+                    <p>Every ingredient, texture, and detail curated for your ultimate journey.</p>
+                    <div class="hero-actions">
+                        <a href="tel:08049927445" class="btn btn-primary-gold"><i class="fa-solid fa-phone"></i> Call Now</a>
+                        <a href="#menu" class="btn btn-secondary-outline smooth-scroll"><i class="fa-solid fa-utensils"></i> View Menu</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Our Heritage</span>
+                <h2 class="section-title">The Casa Fresco Experience</h2>
+                <div class="title-divider"></div>
+            </div>
+            
+            <div class="about-grid">
+                <div class="about-text">
+                    <p class="lead-text">Where culinary artistry meets architectural minimalism.</p>
+                    <p class="body-text">Nestled on a breezy rooftop in HSR Layout, Casa Fresco blends Mediterranean seaside elegance with contemporary global fare. Our space is designed as an urban oasis—a retreat from Bengaluru’s bustle where you can indulge in wood-fired pizzas, handcrafted house pastas, and artisanal coffee under the open sky.</p>
+                    <p class="body-text">Every recipe is developed in-house using premium locally-sourced produce and fine imported cheeses to transport you straight to the Italian coast.</p>
+                    
+                    <div class="about-highlights">
+                        <div class="highlight-item">
+                            <i class="fa-solid fa-sun-plant-wilt highlight-icon"></i>
+                            <div>
+                                <h4>Alfresco Rooftop</h4>
+                                <p>Panoramic sky views and cozy lounge areas.</p>
+                            </div>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fa-solid fa-fire-burner highlight-icon"></i>
+                            <div>
+                                <h4>Artisanal Quality</h4>
+                                <p>Wood-fired pizza ovens and freshly-rolled pasta.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-cards-container">
+                    <div class="status-card glass-panel">
+                        <div class="card-brand-tag">Live Status</div>
+                        <h3>Current Status</h3>
+                        <div id="smart-hours" class="hours-display">
+                            <span class="status-indicator"></span>
+                            <span class="status-text">Checking...</span>
+                        </div>
+                        <p class="hours-detail"><i class="fa-regular fa-clock"></i> Open Daily: 9:00 AM – 11:00 PM</p>
+                        <p class="timezone-detail">Local Time: <span id="current-time-val">--:-- --</span></p>
+                    </div>
+
+                    <div class="chef-card glass-panel">
+                        <div class="chef-info">
+                            <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80&fm=webp" alt="Executive Chef" class="chef-thumb">
+                            <div>
+                                <h4>Chef Giovanni Rossi</h4>
+                                <p class="chef-title">Head Culinary Designer</p>
+                            </div>
+                        </div>
+                        <p class="chef-quote">"Food should excite the eyes before it pleases the palate. We treat every plate as a fresh canvas."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Curated Menu Section -->
+    <section id="menu" class="menu-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Gastronomy</span>
+                <h2 class="section-title">The Curated Selection</h2>
+                <div class="title-divider"></div>
+            </div>
+
+            <!-- Menu Controls: Category Tabs and Search -->
+            <div class="menu-controls glass-panel">
+                <div class="menu-search-wrapper">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" id="menu-search" placeholder="Search menu items (e.g., Alfredo, Basil)..." aria-label="Search Menu">
+                </div>
+                <div class="menu-tabs" id="menu-tabs">
+                    <button class="tab-btn active" data-category="all">All</button>
+                    <button class="tab-btn" data-category="pasta">Delectable Pasta</button>
+                    <button class="tab-btn" data-category="pizza">Handcrafted Pizza</button>
+                    <button class="tab-btn" data-category="desserts">Decadent Desserts</button>
+                    <button class="tab-btn" data-category="drinks">Signature Beverages</button>
+                </div>
+            </div>
+
+            <div id="menu-container" class="menu-grid">
+                <!-- Menu items injected via JS -->
+            </div>
+            
+            <div id="menu-no-results" class="no-results-message hidden">
+                <i class="fa-solid fa-utensils"></i>
+                <p>No dishes match your search or filter. Try checking another category!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservation Section -->
+    <section id="reserve" class="reserve-section">
+        <div class="container">
+            <div class="reserve-wrapper">
+                <div class="reserve-info">
+                    <span class="section-subtitle">Reservations</span>
+                    <h2 class="section-title-left">Secure Your Table</h2>
+                    <p class="reserve-intro">Experience the finest seating at our indoor dining room or the panoramic rooftop sunset lounge. Walk-ins are welcome, but reservations ensure the best seats.</p>
+                    
+                    <div class="info-checklist">
+                        <div class="check-item">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span>No reservation fee or deposit required</span>
+                        </div>
+                        <div class="check-item">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span>15 minutes grace period for bookings</span>
+                        </div>
+                        <div class="check-item">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span>Custom seating requests (rooftop lounge, table near oven)</span>
+                        </div>
+                    </div>
+
+                    <div class="active-reservations-box glass-panel hidden" id="my-bookings-container">
+                        <h4>Your Current Booking</h4>
+                        <div id="booking-details-display">
+                            <!-- Injected by script.js -->
+                        </div>
+                        <button class="btn btn-cancel-booking" id="btn-cancel-booking">Cancel Booking</button>
+                    </div>
+                </div>
+
+                <div class="reserve-form-container glass-panel">
+                    <form id="reservation-form">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="booking-name">Full Name</label>
+                                <div class="input-wrapper">
+                                    <i class="fa-regular fa-user input-icon"></i>
+                                    <input type="text" id="booking-name" required placeholder="John Doe">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="booking-phone">Phone Number</label>
+                                <div class="input-wrapper">
+                                    <i class="fa-solid fa-phone input-icon"></i>
+                                    <input type="tel" id="booking-phone" required placeholder="+91 XXXXX XXXXX">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="booking-date">Select Date</label>
+                                <div class="input-wrapper">
+                                    <i class="fa-regular fa-calendar input-icon"></i>
+                                    <input type="date" id="booking-date" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="booking-time">Select Time</label>
+                                <div class="input-wrapper">
+                                    <i class="fa-regular fa-clock input-icon"></i>
+                                    <select id="booking-time" required>
+                                        <option value="" disabled selected>Select slot</option>
+                                        <option value="12:00 PM">12:00 PM (Lunch)</option>
+                                        <option value="01:00 PM">01:00 PM</option>
+                                        <option value="02:00 PM">02:00 PM</option>
+                                        <option value="04:00 PM">04:00 PM (Hi-Tea)</option>
+                                        <option value="06:00 PM">06:00 PM (Sunset Lounge)</option>
+                                        <option value="07:00 PM">07:00 PM (Dinner)</option>
+                                        <option value="08:00 PM">08:00 PM</option>
+                                        <option value="09:00 PM">09:00 PM</option>
+                                        <option value="10:00 PM">10:00 PM</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="booking-guests">Number of Guests</label>
+                                <div class="input-wrapper">
+                                    <i class="fa-solid fa-users input-icon"></i>
+                                    <select id="booking-guests" required>
+                                        <option value="1">1 Guest</option>
+                                        <option value="2" selected>2 Guests</option>
+                                        <option value="4">4 Guests</option>
+                                        <option value="6">6 Guests</option>
+                                        <option value="8">8+ Guests (Group)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="booking-area">Seating Preference</label>
+                                <div class="input-wrapper">
+                                    <i class="fa-solid fa-chair input-icon"></i>
+                                    <select id="booking-area" required>
+                                        <option value="Rooftop Lounge (Panoramic Sky View)">Rooftop Lounge (Sky View)</option>
+                                        <option value="Indoor Dining (Chilled AC)">Indoor Dining</option>
+                                        <option value="Bar Stools (Cocktails & Conversations)">Bar Counter</option>
+                                        <option value="Any Available Best Table">No Preference</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="booking-notes">Special Notes (Optional)</label>
+                            <textarea id="booking-notes" rows="3" placeholder="Anniversary celebration, dietary restrictions, wheelchair access..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary-gold btn-full">Submit Reservation</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Reviews / Testimonials Section -->
+    <section id="testimonials" class="testimonials-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Reviews</span>
+                <h2 class="section-title">Words From Our Guests</h2>
+                <div class="title-divider"></div>
+            </div>
+
+            <div class="testimonials-slider-container glass-panel">
+                <div class="testimonials-slider" id="testimonials-slider">
+                    <!-- Slides injected by script.js -->
+                </div>
+                
+                <div class="slider-controls">
+                    <button class="slider-arrow prev" id="slider-prev" aria-label="Previous review">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <div class="slider-dots" id="slider-dots">
+                        <!-- Dots injected by script.js -->
+                    </div>
+                    <button class="slider-arrow next" id="slider-next" aria-label="Next review">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location & Contact Section -->
+    <section id="location" class="location-section">
+        <div class="container">
+            <div class="location-grid">
+                <div class="location-info glass-panel">
+                    <span class="section-subtitle">Find Us</span>
+                    <h2>Visit Our Rooftop</h2>
+                    <p class="address"><i class="fa-solid fa-location-dot"></i> #73, 1st Sector, HSR Layout, Bengaluru, Karnataka, 560102</p>
+                    
+                    <div class="contact-details">
+                        <p><i class="fa-solid fa-phone"></i> <strong>Call Us:</strong> <a href="tel:08049927445">080 4992 7445</a></p>
+                        <p><i class="fa-solid fa-envelope"></i> <strong>Email:</strong> info@casafresco.in</p>
+                    </div>
+
+                    <div class="operational-hours">
+                        <h3>Operating Hours</h3>
+                        <div class="hours-row"><span>Monday - Friday</span><span>9:00 AM - 11:00 PM</span></div>
+                        <div class="hours-row"><span>Saturday - Sunday</span><span>9:00 AM - 11:30 PM</span></div>
+                    </div>
+
+                    <a href="https://maps.google.com/?q=73,+1st+Sector,+HSR+Layout,+Bengaluru" target="_blank" rel="noopener noreferrer" class="btn btn-primary-gold btn-full text-center">
+                        <i class="fa-solid fa-map-location-dot"></i> Get Directions
+                    </a>
+                </div>
+
+                <div class="map-container glass-panel">
+                    <!-- Beautiful custom static map style using styled iframe -->
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.7502476569106!2d77.63935227591605!3d12.92376918738676!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae148d28e75db7%3A0xc3910c0bfd9ff1d1!2s1st%20Sector%2C%20HSR%20Layout%2C%20Bengaluru%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="Casa Fresco Location Map">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <div class="logo-container">
+                    <svg class="r-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M30 20 h25 c15 0, 25 8, 25 20 c0 10 -6 16 -14 18 l16 22 h-18 l-13 -19 h-11 v19 h-10 z m10 10 v20 h15 c8 0, 14 -4, 14 -10 c0 -6 -6 -10 -14 -10 z" fill="#cfa86b"/>
+                    </svg>
+                    <span class="logo-text text-white">Casa Fresco</span>
+                </div>
+                <p>Coastal sophistication and luxury rooftop cafe experience in HSR Layout.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#" aria-label="Zomato"><i class="fa-solid fa-utensils"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#about">About Our Space</a></li>
+                    <li><a href="#menu">Our Curated Menu</a></li>
+                    <li><a href="#reserve">Reserve a Table</a></li>
+                    <li><a href="#testimonials">Guest Reviews</a></li>
+                    <li><a href="#location">Find Our Location</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-newsletter">
+                <h3>Newsletter</h3>
+                <p>Join the Casa Fresco Club for exclusive tasting events and seasonal menus.</p>
+                <form id="newsletter-form" class="newsletter-form">
+                    <input type="email" placeholder="Your Email Address" required aria-label="Email address">
+                    <button type="submit" class="btn btn-primary-gold" aria-label="Subscribe"><i class="fa-regular fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 Casa Fresco. Designed with sophistication. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification for reservation confirmations -->
+    <div id="toast-notification" class="toast hidden">
+        <div class="toast-content">
+            <i class="fa-solid fa-circle-check toast-icon"></i>
+            <div>
+                <h4 id="toast-title">Success</h4>
+                <p id="toast-message">Your reservation has been confirmed!</p>
+            </div>
+        </div>
+        <button class="toast-close" id="toast-close-btn" aria-label="Close message">&times;</button>
+    </div>
+
+    <!-- Main JavaScript file -->
+    <script src="script.js"></script>
+</body>
+</html>
