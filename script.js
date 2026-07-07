@@ -323,13 +323,7 @@ const initializeWebsite = () => {
         }
 
         const images = {};
-        let loadedCount = 0;
-        const totalToLoad = framesToDownload.length;
-        
-        // UI Loader elements
-        const loader = document.getElementById('loader');
-        const loaderProgress = document.getElementById('loader-progress');
-        const loaderPercentage = document.getElementById('loader-percentage');
+        // Remaining canvas frames will load asynchronously in the background
 
         // Path generator for files
         const getFramePath = index => {
@@ -397,39 +391,26 @@ const initializeWebsite = () => {
         window.addEventListener('resize', resizeCanvas);
         window.addEventListener('scroll', updateHeroContent);
 
-        // Preload skipped frames
-        framesToDownload.forEach(frameIndex => {
-            const img = new Image();
-            img.onload = () => {
-                images[frameIndex] = img;
-                loadedCount++;
-                
-                // Update loader progress bar
-                const percent = Math.round((loadedCount / totalToLoad) * 100);
-                if (loaderProgress) loaderProgress.style.width = `${percent}%`;
-                if (loaderPercentage) loaderPercentage.textContent = `${percent}%`;
-                
-                // If the first frame is loaded, draw immediately to hide canvas black flash
-                if (frameIndex === 1) {
-                    resizeCanvas();
-                }
+        // Load the FIRST frame immediately to render the hero section without delay
+        const firstImg = new Image();
+        firstImg.onload = () => {
+            images[1] = firstImg;
+            resizeCanvas();
+        };
+        firstImg.src = getFramePath(1);
 
-                // If loading completed, fade out loader screen
-                if (loadedCount === totalToLoad) {
-                    setTimeout(() => {
-                        if (loader) loader.classList.add('fade-out');
-                    }, 500);
-                }
-            };
-            img.onerror = () => {
-                // If frame fails, increment loaded count so loader doesn't block forever
-                loadedCount++;
-                if (loadedCount === totalToLoad) {
-                    if (loader) loader.classList.add('fade-out');
-                }
-            };
-            img.src = getFramePath(frameIndex);
-        });
+        // Load the remaining frames in the background after the page is interactive
+        setTimeout(() => {
+            framesToDownload.forEach(frameIndex => {
+                if (frameIndex === 1) return; // already loaded
+                const img = new Image();
+                img.onload = () => {
+                    images[frameIndex] = img;
+                    updateHeroContent();
+                };
+                img.src = getFramePath(frameIndex);
+            });
+        }, 200);
 
         // Set initial screen layout
         resizeCanvas();
