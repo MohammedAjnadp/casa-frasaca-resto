@@ -3,14 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Casa Fresco | Premium All-Day Dining & Rooftop Café in HSR Layout</title>
-    <meta name="description" content="Experience coastal sophistication at Casa Fresco in HSR Layout, Bengaluru. Premium rooftop dining, gourmet pastas, handcrafted wood-fired pizzas, and signature drinks in an elegant atmosphere.">
+    <title>Casa Fresco | Premium Rooftop Lounge & VIP Dining Club in HSR Layout</title>
+    <meta name="description" content="Experience coastal sophistication at Casa Fresco in HSR Layout, Bengaluru. Join our premium Dining Club for exclusive tasting events, handcrafted pastas, wood-fired pizzas, and rooftop panoramic views.">
+    
+    <!-- Open Graph Metadata -->
+    <meta property="og:title" content="Casa Fresco | Premium Rooftop Lounge & VIP Dining Club">
+    <meta property="og:description" content="Experience coastal sophistication at HSR Layout's premier dining club. Panoramic views, gourmet Italian-Mediterranean fare, and exclusive VIP member benefits.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1200&q=80">
+    <meta property="og:url" content="https://casa-frasaca-resto.vercel.app">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card Metadata -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Casa Fresco | Premium Rooftop Lounge & VIP Dining Club">
+    <meta name="twitter:description" content="Indulge in artisanal gastronomy and coastal luxury at HSR Layout's ultimate rooftop destination.">
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1200&q=80">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    
     <!-- FontAwesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Schema.org JSON-LD Structured Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Restaurant",
+      "name": "Casa Fresco",
+      "image": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1200&q=80",
+      "url": "https://casa-frasaca-resto.vercel.app",
+      "telephone": "+918049927445",
+      "priceRange": "$$$",
+      "servesCuisine": "Italian, Mediterranean, Global",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "#73, 1st Sector, HSR Layout",
+        "addressLocality": "Bengaluru",
+        "addressRegion": "Karnataka",
+        "postalCode": "560102",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 12.923769,
+        "longitude": 77.639352
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "09:00",
+          "closes": "23:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Saturday", "Sunday"],
+          "opens": "09:00",
+          "closes": "23:30"
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <!-- Premium Loader -->
@@ -39,13 +95,15 @@
             <ul class="nav-links" id="nav-links">
                 <li><a href="#about" class="smooth-scroll">About</a></li>
                 <li><a href="#menu" class="smooth-scroll">Menu</a></li>
-                <li><a href="#reserve" class="smooth-scroll">Reservations</a></li>
+                <li><a href="#membership" class="smooth-scroll">Membership</a></li>
                 <li><a href="#testimonials" class="smooth-scroll">Reviews</a></li>
+                <li><a href="#gallery" class="smooth-scroll">Gallery</a></li>
+                <li><a href="#faq" class="smooth-scroll">FAQ</a></li>
                 <li><a href="#location" class="smooth-scroll">Contact</a></li>
             </ul>
 
             <div class="nav-actions">
-                <a href="#reserve" class="btn btn-nav btn-primary-gold smooth-scroll">Book Table</a>
+                <a href="#location" class="btn btn-nav btn-primary-gold smooth-scroll magnetic-btn">Book tasting</a>
                 <button class="mobile-nav-toggle" id="mobile-toggle" aria-label="Toggle navigation">
                     <span class="bar"></span>
                     <span class="bar"></span>
@@ -83,8 +141,8 @@
                     <h2>Handcrafted<br><span class="accent-text">Elegance</span></h2>
                     <p>Every ingredient, texture, and detail curated for your ultimate journey.</p>
                     <div class="hero-actions">
-                        <a href="tel:08049927445" class="btn btn-primary-gold"><i class="fa-solid fa-phone"></i> Call Now</a>
-                        <a href="#menu" class="btn btn-secondary-outline smooth-scroll"><i class="fa-solid fa-utensils"></i> View Menu</a>
+                        <a href="tel:08049927445" class="btn btn-primary-gold magnetic-btn"><i class="fa-solid fa-phone"></i> Call Now</a>
+                        <a href="#menu" class="btn btn-secondary-outline smooth-scroll magnetic-btn"><i class="fa-solid fa-utensils"></i> View Menu</a>
                     </div>
                 </div>
             </div>
@@ -94,14 +152,14 @@
     <!-- About Section -->
     <section id="about" class="about-section">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header reveal-fade">
                 <span class="section-subtitle">Our Heritage</span>
                 <h2 class="section-title">The Casa Fresco Experience</h2>
                 <div class="title-divider"></div>
             </div>
             
             <div class="about-grid">
-                <div class="about-text">
+                <div class="about-text reveal-left">
                     <p class="lead-text">Where culinary artistry meets architectural minimalism.</p>
                     <p class="body-text">Nestled on a breezy rooftop in HSR Layout, Casa Fresco blends Mediterranean seaside elegance with contemporary global fare. Our space is designed as an urban oasis—a retreat from Bengaluru’s bustle where you can indulge in wood-fired pizzas, handcrafted house pastas, and artisanal coffee under the open sky.</p>
                     <p class="body-text">Every recipe is developed in-house using premium locally-sourced produce and fine imported cheeses to transport you straight to the Italian coast.</p>
@@ -124,8 +182,8 @@
                     </div>
                 </div>
                 
-                <div class="about-cards-container">
-                    <div class="status-card glass-panel">
+                <div class="about-cards-container reveal-right">
+                    <div class="status-card glass-panel tilt-card">
                         <div class="card-brand-tag">Live Status</div>
                         <h3>Current Status</h3>
                         <div id="smart-hours" class="hours-display">
@@ -136,9 +194,9 @@
                         <p class="timezone-detail">Local Time: <span id="current-time-val">--:-- --</span></p>
                     </div>
 
-                    <div class="chef-card glass-panel">
+                    <div class="chef-card glass-panel tilt-card">
                         <div class="chef-info">
-                            <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80&fm=webp" alt="Executive Chef" class="chef-thumb">
+                            <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80&fm=webp" alt="Executive Chef" class="chef-thumb" loading="lazy">
                             <div>
                                 <h4>Chef Giovanni Rossi</h4>
                                 <p class="chef-title">Head Culinary Designer</p>
@@ -151,27 +209,51 @@
         </div>
     </section>
 
+    <!-- Stats Count Section -->
+    <section id="stats-counters" class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card glass-panel reveal-scale" data-delay="0">
+                    <div class="stat-number" data-target="15000">0</div>
+                    <div class="stat-label">Happy Diners</div>
+                </div>
+                <div class="stat-card glass-panel reveal-scale" data-delay="100">
+                    <div class="stat-number" data-target="48">0</div>
+                    <div class="stat-label">Signature Dishes</div>
+                </div>
+                <div class="stat-card glass-panel reveal-scale" data-delay="200">
+                    <div class="stat-number" data-target="180">0</div>
+                    <div class="stat-label">Rooftop Soirees</div>
+                </div>
+                <div class="stat-card glass-panel reveal-scale" data-delay="300">
+                    <div class="stat-number" data-target="9">0</div>
+                    <div class="stat-label">Culinary Awards</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Curated Menu Section -->
     <section id="menu" class="menu-section">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header reveal-fade">
                 <span class="section-subtitle">Gastronomy</span>
                 <h2 class="section-title">The Curated Selection</h2>
                 <div class="title-divider"></div>
             </div>
 
-            <!-- Menu Controls: Category Tabs and Search -->
-            <div class="menu-controls glass-panel">
+            <!-- Menu Controls -->
+            <div class="menu-controls glass-panel reveal-fade">
                 <div class="menu-search-wrapper">
                     <i class="fa-solid fa-magnifying-glass search-icon"></i>
                     <input type="text" id="menu-search" placeholder="Search menu items (e.g., Alfredo, Basil)..." aria-label="Search Menu">
                 </div>
                 <div class="menu-tabs" id="menu-tabs">
-                    <button class="tab-btn active" data-category="all">All</button>
-                    <button class="tab-btn" data-category="pasta">Delectable Pasta</button>
-                    <button class="tab-btn" data-category="pizza">Handcrafted Pizza</button>
-                    <button class="tab-btn" data-category="desserts">Decadent Desserts</button>
-                    <button class="tab-btn" data-category="drinks">Signature Beverages</button>
+                    <button class="tab-btn active magnetic-btn" data-category="all">All</button>
+                    <button class="tab-btn magnetic-btn" data-category="pasta">Delectable Pasta</button>
+                    <button class="tab-btn magnetic-btn" data-category="pizza">Handcrafted Pizza</button>
+                    <button class="tab-btn magnetic-btn" data-category="desserts">Decadent Desserts</button>
+                    <button class="tab-btn magnetic-btn" data-category="drinks">Signature Beverages</button>
                 </div>
             </div>
 
@@ -186,40 +268,482 @@
         </div>
     </section>
 
-    <!-- Reservation Section -->
-    <section id="reserve" class="reserve-section">
+    <!-- Membership Section -->
+    <section id="membership" class="membership-section">
         <div class="container">
-            <div class="reserve-wrapper">
-                <div class="reserve-info">
-                    <span class="section-subtitle">Reservations</span>
-                    <h2 class="section-title-left">Secure Your Table</h2>
-                    <p class="reserve-intro">Experience the finest seating at our indoor dining room or the panoramic rooftop sunset lounge. Walk-ins are welcome, but reservations ensure the best seats.</p>
-                    
-                    <div class="info-checklist">
-                        <div class="check-item">
-                            <i class="fa-solid fa-circle-check"></i>
-                            <span>No reservation fee or deposit required</span>
-                        </div>
-                        <div class="check-item">
-                            <i class="fa-solid fa-circle-check"></i>
-                            <span>15 minutes grace period for bookings</span>
-                        </div>
-                        <div class="check-item">
-                            <i class="fa-solid fa-circle-check"></i>
-                            <span>Custom seating requests (rooftop lounge, table near oven)</span>
-                        </div>
-                    </div>
+            <div class="section-header reveal-fade">
+                <span class="section-subtitle">Exclusive Clubs</span>
+                <h2 class="section-title">VIP Dining Membership</h2>
+                <div class="title-divider"></div>
+            </div>
 
-                    <div class="active-reservations-box glass-panel hidden" id="my-bookings-container">
-                        <h4>Your Current Booking</h4>
-                        <div id="booking-details-display">
-                            <!-- Injected by script.js -->
-                        </div>
-                        <button class="btn btn-cancel-booking" id="btn-cancel-booking">Cancel Booking</button>
+            <div class="pricing-grid">
+                <!-- Bistro Club -->
+                <div class="pricing-card glass-panel reveal-scale tilt-card" data-delay="0">
+                    <div class="pricing-header">
+                        <h3>Bistro Club</h3>
+                        <div class="price">₹1,999<span>/month</span></div>
+                        <p class="price-desc">Perfect for casual fine dining enthusiasts.</p>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fa-solid fa-circle-check"></i> Priority dining reservations</li>
+                        <li><i class="fa-solid fa-circle-check"></i> 10% off all Bistro tier menus</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Free dessert on your birthday</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Invites to chef's weekly tastings</li>
+                        <li class="disabled"><i class="fa-solid fa-circle-xmark"></i> Private rooftop lounge access</li>
+                        <li class="disabled"><i class="fa-solid fa-circle-xmark"></i> Exclusive event bookings</li>
+                    </ul>
+                    <div class="pricing-action">
+                        <a href="#location" class="btn btn-secondary-outline btn-full magnetic-btn smooth-scroll">Subscribe Now</a>
                     </div>
                 </div>
 
-                <div class="reserve-form-container glass-panel">
+                <!-- Rooftop Lounge VIP -->
+                <div class="pricing-card glass-panel popular reveal-scale tilt-card" data-delay="150">
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="pricing-header">
+                        <h3>Rooftop Lounge VIP</h3>
+                        <div class="price">₹4,999<span>/month</span></div>
+                        <p class="price-desc">Our ultimate membership for luxury sunset diners.</p>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fa-solid fa-circle-check"></i> Guaranteed table bookings</li>
+                        <li><i class="fa-solid fa-circle-check"></i> 20% off all menus & drinks</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Complimentary valet parking</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Private rooftop lounge access</li>
+                        <li><i class="fa-solid fa-circle-check"></i> 2 free guest entries monthly</li>
+                        <li class="disabled"><i class="fa-solid fa-circle-xmark"></i> Custom chef tasting requests</li>
+                    </ul>
+                    <div class="pricing-action">
+                        <a href="#location" class="btn btn-primary-gold btn-full btn-glow magnetic-btn smooth-scroll">Subscribe Now</a>
+                    </div>
+                </div>
+
+                <!-- Elite Gastronomy Club -->
+                <div class="pricing-card glass-panel reveal-scale tilt-card" data-delay="300">
+                    <div class="pricing-header">
+                        <h3>Elite Gastronomy</h3>
+                        <div class="price">₹9,999<span>/month</span></div>
+                        <p class="price-desc">The pinnacle of luxury gastronomy experiences.</p>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fa-solid fa-circle-check"></i> Instant reservations anytime</li>
+                        <li><i class="fa-solid fa-circle-check"></i> 30% off all menus & premium cellars</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Free luxury cab home service</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Unlimited private lounge entry</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Custom chef tastings anytime</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Host private events (no booking fee)</li>
+                    </ul>
+                    <div class="pricing-action">
+                        <a href="#location" class="btn btn-secondary-outline btn-full magnetic-btn smooth-scroll">Subscribe Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comparison Table Toggle -->
+            <div class="compare-toggle-container reveal-fade">
+                <button class="btn btn-secondary-outline compare-btn magnetic-btn" id="compare-btn" aria-expanded="false" aria-controls="compare-table-container">
+                    Compare Membership Tiers <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                </button>
+            </div>
+
+            <!-- Comparison Table -->
+            <div class="compare-table-wrapper hidden" id="compare-table-container">
+                <table class="compare-table glass-panel">
+                    <thead>
+                        <tr>
+                            <th>Benefits</th>
+                            <th>Bistro Club</th>
+                            <th>Rooftop Lounge VIP</th>
+                            <th>Elite Gastronomy</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Priority Reservations</td>
+                            <td><i class="fa-solid fa-check text-gold"></i></td>
+                            <td><i class="fa-solid fa-check text-gold"></i></td>
+                            <td><i class="fa-solid fa-check text-gold"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Discount on Bills</td>
+                            <td>10% Off</td>
+                            <td>20% Off</td>
+                            <td>30% Off</td>
+                        </tr>
+                        <tr>
+                            <td>Complimentary Drinks</td>
+                            <td>Birthday only</td>
+                            <td>1 per visit</td>
+                            <td>Unlimited house pours</td>
+                        </tr>
+                        <tr>
+                            <td>Rooftop Lounge Entry</td>
+                            <td><i class="fa-solid fa-xmark text-muted"></i></td>
+                            <td><i class="fa-solid fa-check text-gold"></i></td>
+                            <td><i class="fa-solid fa-check text-gold"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Valet Parking</td>
+                            <td><i class="fa-solid fa-xmark text-muted"></i></td>
+                            <td>Complimentary</td>
+                            <td>Complimentary</td>
+                        </tr>
+                        <tr>
+                            <td>Customized Menus</td>
+                            <td><i class="fa-solid fa-xmark text-muted"></i></td>
+                            <td><i class="fa-solid fa-xmark text-muted"></i></td>
+                            <td>Chef Bespoke Specials</td>
+                        </tr>
+                        <tr>
+                            <td>Free Cab Drop Service</td>
+                            <td><i class="fa-solid fa-xmark text-muted"></i></td>
+                            <td><i class="fa-solid fa-xmark text-muted"></i></td>
+                            <td>Yes (within 15km)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section with Infinite Marquee -->
+    <section id="testimonials" class="testimonials-section">
+        <div class="container">
+            <div class="section-header reveal-fade">
+                <span class="section-subtitle">Social Proof</span>
+                <h2 class="section-title">Words From Our Guests</h2>
+                <div class="title-divider"></div>
+            </div>
+        </div>
+
+        <!-- Infinite Marquee Track (Left Direction) -->
+        <div class="marquee-wrapper reveal-fade">
+            <div class="marquee-track">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card glass-panel">
+                    <div class="review-rating">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="review-text">"Casa Fresco has hands down the best rooftop vibes in HSR! The Truffle Fettuccine is extremely creamy and delicious."</p>
+                    <div class="review-author">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Ananya" class="author-avatar" loading="lazy">
+                        <div>
+                            <span class="author-name">Ananya Sharma</span>
+                            <span class="author-title">Bistro Club Member</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 (Video Mock) -->
+                <div class="testimonial-card glass-panel video-testimonial">
+                    <div class="video-preview-container">
+                        <img src="https://images.unsplash.com/photo-1543007630-9710e4a00a20?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Video Review" class="video-thumb" loading="lazy">
+                        <button class="btn-play-video" aria-label="Play video testimonial"><i class="fa-solid fa-play"></i></button>
+                        <video class="video-player" src="https://assets.mixkit.co/videos/preview/mixkit-dining-at-a-fancy-restaurant-41484-large.mp4" loop muted playsinline></video>
+                    </div>
+                    <div class="video-card-meta">
+                        <div class="review-rating">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <span class="author-name">David Miller</span>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card glass-panel">
+                    <div class="review-rating">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="review-text">"Loved the wood-fired pizzas, especially the Jamie's Margherita. Crust was crispy and toppings were incredibly fresh."</p>
+                    <div class="review-author">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Rohan" class="author-avatar" loading="lazy">
+                        <div>
+                            <span class="author-name">Rohan Verma</span>
+                            <span class="author-title">Rooftop VIP Member</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 4 (Video Mock) -->
+                <div class="testimonial-card glass-panel video-testimonial">
+                    <div class="video-preview-container">
+                        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Video Review" class="video-thumb" loading="lazy">
+                        <button class="btn-play-video" aria-label="Play video testimonial"><i class="fa-solid fa-play"></i></button>
+                        <video class="video-player" src="https://assets.mixkit.co/videos/preview/mixkit-pouring-wine-into-a-glass-at-restaurant-41481-large.mp4" loop muted playsinline></video>
+                    </div>
+                    <div class="video-card-meta">
+                        <div class="review-rating">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <span class="author-name">Clara Oswald</span>
+                    </div>
+                </div>
+
+                <!-- Testimonial 5 -->
+                <div class="testimonial-card glass-panel">
+                    <div class="review-rating">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="review-text">"Breathtaking sunset views from the lounge. The Hibiscus Spritz mocktail is so refreshing. Perfect spot in Bangalore!"</p>
+                    <div class="review-author">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Sophia" class="author-avatar" loading="lazy">
+                        <div>
+                            <span class="author-name">Sophia Martinez</span>
+                            <span class="author-title">Elite Gastronomy Member</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Duplicated Track for seamless infinite marquee loop -->
+            <div class="marquee-track" aria-hidden="true">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card glass-panel">
+                    <div class="review-rating">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="review-text">"Casa Fresco has hands down the best rooftop vibes in HSR! The Truffle Fettuccine is extremely creamy and delicious."</p>
+                    <div class="review-author">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Ananya" class="author-avatar" loading="lazy">
+                        <div>
+                            <span class="author-name">Ananya Sharma</span>
+                            <span class="author-title">Bistro Club Member</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 (Video Mock) -->
+                <div class="testimonial-card glass-panel video-testimonial">
+                    <div class="video-preview-container">
+                        <img src="https://images.unsplash.com/photo-1543007630-9710e4a00a20?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Video Review" class="video-thumb" loading="lazy">
+                        <button class="btn-play-video" aria-label="Play video testimonial"><i class="fa-solid fa-play"></i></button>
+                        <video class="video-player" src="https://assets.mixkit.co/videos/preview/mixkit-dining-at-a-fancy-restaurant-41484-large.mp4" loop muted playsinline></video>
+                    </div>
+                    <div class="video-card-meta">
+                        <div class="review-rating">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <span class="author-name">David Miller</span>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card glass-panel">
+                    <div class="review-rating">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="review-text">"Loved the wood-fired pizzas, especially the Jamie's Margherita. Crust was crispy and toppings were incredibly fresh."</p>
+                    <div class="review-author">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Rohan" class="author-avatar" loading="lazy">
+                        <div>
+                            <span class="author-name">Rohan Verma</span>
+                            <span class="author-title">Rooftop VIP Member</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 4 (Video Mock) -->
+                <div class="testimonial-card glass-panel video-testimonial">
+                    <div class="video-preview-container">
+                        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Video Review" class="video-thumb" loading="lazy">
+                        <button class="btn-play-video" aria-label="Play video testimonial"><i class="fa-solid fa-play"></i></button>
+                        <video class="video-player" src="https://assets.mixkit.co/videos/preview/mixkit-pouring-wine-into-a-glass-at-restaurant-41481-large.mp4" loop muted playsinline></video>
+                    </div>
+                    <div class="video-card-meta">
+                        <div class="review-rating">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <span class="author-name">Clara Oswald</span>
+                    </div>
+                </div>
+
+                <!-- Testimonial 5 -->
+                <div class="testimonial-card glass-panel">
+                    <div class="review-rating">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="review-text">"Breathtaking sunset views from the lounge. The Hibiscus Spritz mocktail is so refreshing. Perfect spot in Bangalore!"</p>
+                    <div class="review-author">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Sophia" class="author-avatar" loading="lazy">
+                        <div>
+                            <span class="author-name">Sophia Martinez</span>
+                            <span class="author-title">Elite Gastronomy Member</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Apple Style Horizontal Gallery with Drag & Parallax -->
+    <section id="gallery" class="gallery-section">
+        <div class="container">
+            <div class="section-header reveal-fade">
+                <span class="section-subtitle">Visual Journey</span>
+                <h2 class="section-title">The Gallery Experience</h2>
+                <div class="title-divider"></div>
+            </div>
+        </div>
+
+        <div class="gallery-wrapper reveal-fade">
+            <div class="gallery-track" id="gallery-track" role="list">
+                <!-- Card 1 -->
+                <div class="gallery-card drag-card" role="listitem">
+                    <div class="gallery-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1543007630-9710e4a00a20?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Casa Fresco Gourmet Bistro table setup" class="gallery-img" loading="lazy">
+                    </div>
+                    <div class="gallery-info">
+                        <h3>Signature Dining</h3>
+                        <p>A gourmet table setup for special culinary moments.</p>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="gallery-card drag-card" role="listitem">
+                    <div class="gallery-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Casa Fresco Rooftop Cafe Lounge overview" class="gallery-img" loading="lazy">
+                    </div>
+                    <div class="gallery-info">
+                        <h3>Skyline Horizon</h3>
+                        <p>Enjoy spectacular sunset views from our open-air rooftop.</p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="gallery-card drag-card" role="listitem">
+                    <div class="gallery-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Chef preparing wood-fired pizza at Casa Fresco" class="gallery-img" loading="lazy">
+                    </div>
+                    <div class="gallery-info">
+                        <h3>Wood-Fired Hearth</h3>
+                        <p>Watch our master chefs bake signature pizzas from scratch.</p>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="gallery-card drag-card" role="listitem">
+                    <div class="gallery-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Executive Chef Rossi plating a gourmet dish" class="gallery-img" loading="lazy">
+                    </div>
+                    <div class="gallery-info">
+                        <h3>Culinary Mastery</h3>
+                        <p>Each plate is a masterpiece crafted with precision and care.</p>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="gallery-card drag-card" role="listitem">
+                    <div class="gallery-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1536935338788-846bb9981813?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Aesthetic handcrafted cocktails at the bar counter" class="gallery-img" loading="lazy">
+                    </div>
+                    <div class="gallery-info">
+                        <h3>Liquid Art</h3>
+                        <p>Artisanal botanical mocktails and custom espresso-infused blends.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="gallery-drag-indicator">
+                <i class="fa-solid fa-left-right"></i> Drag horizontally to explore
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Accordion Section -->
+    <section id="faq" class="faq-section">
+        <div class="container">
+            <div class="section-header reveal-fade">
+                <span class="section-subtitle">FAQ</span>
+                <h2 class="section-title">Common Inquiries</h2>
+                <div class="title-divider"></div>
+            </div>
+
+            <div class="faq-accordion-container reveal-fade">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item glass-panel">
+                    <button class="faq-header" aria-expanded="false">
+                        <span>What are the timings and location of Casa Fresco?</span>
+                        <i class="fa-solid fa-chevron-down faq-chevron"></i>
+                    </button>
+                    <div class="faq-content">
+                        <p>Casa Fresco is located at #73, 1st Sector, HSR Layout, Bengaluru. We are open daily from 9:00 AM to 11:00 PM on weekdays, and 9:00 AM to 11:30 PM on Saturdays and Sundays. Reservations are highly recommended for the rooftop sunset dining lounge.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="faq-item glass-panel">
+                    <button class="faq-header" aria-expanded="false">
+                        <span>How does the VIP Gastronomy Membership work?</span>
+                        <i class="fa-solid fa-chevron-down faq-chevron"></i>
+                    </button>
+                    <div class="faq-content">
+                        <p>Our VIP Membership features three premium tiers (Bistro Club, Rooftop Lounge VIP, and Elite Gastronomy Club). Subscribing grants you monthly dining credits, priority reservations, billing discounts, free access to exclusive chef events, and private lounge access. You can sign up online or ask our host during your visit.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="faq-item glass-panel">
+                    <button class="faq-header" aria-expanded="false">
+                        <span>Do you accommodate gluten-free and vegan diets?</span>
+                        <i class="fa-solid fa-chevron-down faq-chevron"></i>
+                    </button>
+                    <div class="faq-content">
+                        <p>Yes, absolutely. Our menu features labeled vegan, vegetarian, and gluten-free choices. Let your server know about any specific allergies or dietary preferences, and Chef Rossi's team will be happy to customize your meal accordingly.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="faq-item glass-panel">
+                    <button class="faq-header" aria-expanded="false">
+                        <span>Can I host a private event or rooftop lounge party?</span>
+                        <i class="fa-solid fa-chevron-down faq-chevron"></i>
+                    </button>
+                    <div class="faq-content">
+                        <p>Yes! We host private rooftop celebrations, corporate events, and intimate dinner gatherings. Elite Gastronomy members enjoy free event hosting (no booking fee), and our events coordinator handles catering, custom drinks, and table arrangements. Please fill out the contact form below or call us directly to book.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location & Contact Section -->
+    <section id="location" class="location-section">
+        <div class="container">
+            <div class="location-grid">
+                <div class="location-info glass-panel reveal-left">
+                    <span class="section-subtitle">Find Us</span>
+                    <h2>Visit Our Rooftop</h2>
+                    <p class="address"><i class="fa-solid fa-location-dot"></i> #73, 1st Sector, HSR Layout, Bengaluru, Karnataka, 560102</p>
+                    
+                    <div class="contact-details">
+                        <p><i class="fa-solid fa-phone"></i> <strong>Call Us:</strong> <a href="tel:08049927445">080 4992 7445</a></p>
+                        <p><i class="fa-solid fa-envelope"></i> <strong>Email:</strong> info@casafresco.in</p>
+                    </div>
+
+                    <div class="operational-hours">
+                        <h3>Operating Hours</h3>
+                        <div class="hours-row"><span>Monday - Friday</span><span>9:00 AM - 11:00 PM</span></div>
+                        <div class="hours-row"><span>Saturday - Sunday</span><span>9:00 AM - 11:30 PM</span></div>
+                    </div>
+
+                    <!-- WhatsApp and Phone Instant CTAs -->
+                    <div class="instant-ctas">
+                        <a href="https://wa.me/918049927445?text=Hi%20Casa%20Fresco,%20I%20would%20like%20to%20know%20more%20about%20your%20dining%20reservations!" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp magnetic-btn">
+                            <i class="fa-brands fa-whatsapp"></i> WhatsApp Us
+                        </a>
+                        <a href="tel:08049927445" class="btn btn-secondary-outline magnetic-btn">
+                            <i class="fa-solid fa-phone-flip"></i> Direct Call
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Book Tasting / Trial Form -->
+                <div class="reserve-form-container glass-panel reveal-right">
+                    <div class="form-header-wrapper">
+                        <h3>Book a VIP Tasting Preview</h3>
+                        <p>Enjoy a complimentary tasting course and custom chef consultation to preview our membership benefits.</p>
+                    </div>
                     <form id="reservation-form">
                         <div class="form-grid">
                             <div class="form-group">
@@ -275,89 +799,41 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="booking-area">Seating Preference</label>
+                                <label for="booking-area">Desired Tier Preview</label>
                                 <div class="input-wrapper">
                                     <i class="fa-solid fa-chair input-icon"></i>
                                     <select id="booking-area" required>
-                                        <option value="Rooftop Lounge (Panoramic Sky View)">Rooftop Lounge (Sky View)</option>
-                                        <option value="Indoor Dining (Chilled AC)">Indoor Dining</option>
-                                        <option value="Bar Stools (Cocktails & Conversations)">Bar Counter</option>
-                                        <option value="Any Available Best Table">No Preference</option>
+                                        <option value="Bistro Club Tier">Bistro Club (Indoor)</option>
+                                        <option value="Rooftop Lounge VIP Tier">Rooftop Lounge VIP</option>
+                                        <option value="Elite Gastronomy Club Tier">Elite Gastronomy</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group full-width">
-                            <label for="booking-notes">Special Notes (Optional)</label>
-                            <textarea id="booking-notes" rows="3" placeholder="Anniversary celebration, dietary restrictions, wheelchair access..."></textarea>
+                            <label for="booking-notes">Special Tasting Requests (Optional)</label>
+                            <textarea id="booking-notes" rows="2" placeholder="Vegetarian options, anniversary details, chef special notes..."></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary-gold btn-full">Submit Reservation</button>
+                        <button type="submit" class="btn btn-primary-gold btn-full btn-glow magnetic-btn">Submit Booking Request</button>
                     </form>
+
+                    <div class="active-reservations-box glass-panel hidden" id="my-bookings-container">
+                        <h4>Your Current Booking</h4>
+                        <div id="booking-details-display">
+                            <!-- Injected by script.js -->
+                        </div>
+                        <button class="btn btn-cancel-booking" id="btn-cancel-booking">Cancel Booking</button>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Customer Reviews / Testimonials Section -->
-    <section id="testimonials" class="testimonials-section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-subtitle">Reviews</span>
-                <h2 class="section-title">Words From Our Guests</h2>
-                <div class="title-divider"></div>
-            </div>
-
-            <div class="testimonials-slider-container glass-panel">
-                <div class="testimonials-slider" id="testimonials-slider">
-                    <!-- Slides injected by script.js -->
-                </div>
-                
-                <div class="slider-controls">
-                    <button class="slider-arrow prev" id="slider-prev" aria-label="Previous review">
-                        <i class="fa-solid fa-chevron-left"></i>
-                    </button>
-                    <div class="slider-dots" id="slider-dots">
-                        <!-- Dots injected by script.js -->
-                    </div>
-                    <button class="slider-arrow next" id="slider-next" aria-label="Next review">
-                        <i class="fa-solid fa-chevron-right"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Location & Contact Section -->
-    <section id="location" class="location-section">
-        <div class="container">
-            <div class="location-grid">
-                <div class="location-info glass-panel">
-                    <span class="section-subtitle">Find Us</span>
-                    <h2>Visit Our Rooftop</h2>
-                    <p class="address"><i class="fa-solid fa-location-dot"></i> #73, 1st Sector, HSR Layout, Bengaluru, Karnataka, 560102</p>
-                    
-                    <div class="contact-details">
-                        <p><i class="fa-solid fa-phone"></i> <strong>Call Us:</strong> <a href="tel:08049927445">080 4992 7445</a></p>
-                        <p><i class="fa-solid fa-envelope"></i> <strong>Email:</strong> info@casafresco.in</p>
-                    </div>
-
-                    <div class="operational-hours">
-                        <h3>Operating Hours</h3>
-                        <div class="hours-row"><span>Monday - Friday</span><span>9:00 AM - 11:00 PM</span></div>
-                        <div class="hours-row"><span>Saturday - Sunday</span><span>9:00 AM - 11:30 PM</span></div>
-                    </div>
-
-                    <a href="https://maps.google.com/?q=73,+1st+Sector,+HSR+Layout,+Bengaluru" target="_blank" rel="noopener noreferrer" class="btn btn-primary-gold btn-full text-center">
-                        <i class="fa-solid fa-map-location-dot"></i> Get Directions
-                    </a>
-                </div>
-
+            
+            <!-- Styled Google Map Container -->
+            <div class="map-row reveal-fade">
                 <div class="map-container glass-panel">
-                    <!-- Beautiful custom static map style using styled iframe -->
                     <iframe 
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.7502476569106!2d77.63935227591605!3d12.92376918738676!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae148d28e75db7%3A0xc3910c0bfd9ff1d1!2s1st%20Sector%2C%20HSR%20Layout%2C%20Bengaluru%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
                         width="100%" 
-                        height="100%" 
+                        height="400" 
                         style="border:0;" 
                         allowfullscreen="" 
                         loading="lazy" 
@@ -381,10 +857,10 @@
                 </div>
                 <p>Coastal sophistication and luxury rooftop cafe experience in HSR Layout.</p>
                 <div class="social-links">
-                    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
-                    <a href="#" aria-label="Zomato"><i class="fa-solid fa-utensils"></i></a>
+                    <a href="#" aria-label="Instagram" class="magnetic-btn"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" aria-label="Facebook" class="magnetic-btn"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter" class="magnetic-btn"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#" aria-label="Zomato" class="magnetic-btn"><i class="fa-solid fa-utensils"></i></a>
                 </div>
             </div>
 
@@ -393,9 +869,10 @@
                 <ul>
                     <li><a href="#about">About Our Space</a></li>
                     <li><a href="#menu">Our Curated Menu</a></li>
-                    <li><a href="#reserve">Reserve a Table</a></li>
+                    <li><a href="#membership">VIP Membership</a></li>
                     <li><a href="#testimonials">Guest Reviews</a></li>
-                    <li><a href="#location">Find Our Location</a></li>
+                    <li><a href="#gallery">Visual Gallery</a></li>
+                    <li><a href="#faq">Common FAQs</a></li>
                 </ul>
             </div>
 
@@ -404,7 +881,7 @@
                 <p>Join the Casa Fresco Club for exclusive tasting events and seasonal menus.</p>
                 <form id="newsletter-form" class="newsletter-form">
                     <input type="email" placeholder="Your Email Address" required aria-label="Email address">
-                    <button type="submit" class="btn btn-primary-gold" aria-label="Subscribe"><i class="fa-regular fa-paper-plane"></i></button>
+                    <button type="submit" class="btn btn-primary-gold magnetic-btn" aria-label="Subscribe"><i class="fa-regular fa-paper-plane"></i></button>
                 </form>
             </div>
         </div>
