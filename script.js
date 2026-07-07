@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Function to render menu items with filter criteria
     function renderMenu(categoryFilter = 'all', searchQuery = '') {
-        if (!menuContainer) return;
+        // Clear container
         menuContainer.innerHTML = '';
         const searchNormalized = searchQuery.toLowerCase().trim();
 
@@ -117,9 +117,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Toggle no-results message
         if (filteredItems.length === 0) {
-            if (menuNoResults) menuNoResults.classList.remove('hidden');
+            menuNoResults.classList.remove('hidden');
         } else {
-            if (menuNoResults) menuNoResults.classList.add('hidden');
+            menuNoResults.classList.add('hidden');
         }
 
         // Create and append elements
@@ -148,11 +148,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (entry.isIntersecting) {
                         setTimeout(() => {
                             entry.target.classList.add('visible');
-                        }, index * 40); // Fast, light stagger
+                        }, index * 80); // Stagger interval
                         observer.unobserve(entry.target);
                     }
                 });
-            }, { threshold: 0.02 });
+            }, { threshold: 0.05 });
 
             observer.observe(card);
         });
@@ -164,17 +164,19 @@ document.addEventListener('DOMContentLoaded', () => {
             const target = e.target.closest('.tab-btn');
             if (!target) return;
             
+            // Toggle active class
             menuTabs.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
             target.classList.add('active');
 
+            // Render
             const category = target.getAttribute('data-category');
-            renderMenu(category, menuSearch ? menuSearch.value : '');
+            renderMenu(category, menuSearch.value);
         });
     }
 
     if (menuSearch) {
         menuSearch.addEventListener('input', () => {
-            const activeTab = menuTabs ? menuTabs.querySelector('.tab-btn.active') : null;
+            const activeTab = menuTabs.querySelector('.tab-btn.active');
             const category = activeTab ? activeTab.getAttribute('data-category') : 'all';
             renderMenu(category, menuSearch.value);
         });
@@ -190,6 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     function checkOpenStatus() {
         // HSR Layout timezone is IST (UTC +5:30)
+        // We will calculate current IST time
         const now = new Date();
         const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
         const istOffset = 5.5; // India standard offset
@@ -202,7 +205,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const mins = String(istTime.getMinutes()).padStart(2, '0');
         const ampm = hrs >= 12 ? 'PM' : 'AM';
         hrs = hrs % 12;
-        hrs = hrs ? hrs : 12;
+        hrs = hrs ? hrs : 12; // the hour '0' should be '12'
         const timeString = `${hrs}:${mins} ${ampm} IST`;
         
         if (currentTimeDisplay) {
@@ -227,7 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     checkOpenStatus();
-    setInterval(checkOpenStatus, 15000); // Check every 15s
+    setInterval(checkOpenStatus, 15000); // Check every 15s for precision
 
     // -------------------------------------------------------------------------
     // 3. Navigation Controls: Hamburger Drawer & Smooth Scrolling
@@ -267,13 +270,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Navbar Scroll shadow and active link highlights
+    // Navbar Scroll shadow and shrink
     window.addEventListener('scroll', () => {
         if (window.scrollY > 40) {
             navbar.classList.add('scrolled');
         } else {
             navbar.classList.remove('scrolled');
         }
+        
+        // Active link indicator update
         updateActiveNavLink();
     });
 
@@ -298,18 +303,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // -------------------------------------------------------------------------
-    // 4. Scroll-Triggered Hero Canvas Optimization (Skipped frame-loading)
+    // 4. Scroll-Triggered Hero Canvas Optimization (Lazy, skipped frame-loading)
     // -------------------------------------------------------------------------
     const canvas = document.getElementById('hero-canvas');
     if (canvas) {
         const context = canvas.getContext('2d');
         const totalFrames = 240;
-        const frameStep = 3; // Keep only every 3rd frame (80 total)
+        
+        // Optimize: skip frames to reduce initial download (approx. every 3rd frame is loaded)
+        const frameStep = 3;
         const framesToDownload = [];
         
         for (let i = 1; i <= totalFrames; i += frameStep) {
             framesToDownload.push(i);
         }
+        // Force include the last frame for a complete animation scroll
         if (framesToDownload[framesToDownload.length - 1] !== totalFrames) {
             framesToDownload.push(totalFrames);
         }
@@ -318,16 +326,21 @@ document.addEventListener('DOMContentLoaded', () => {
         let loadedCount = 0;
         const totalToLoad = framesToDownload.length;
         
+        // UI Loader elements
         const loader = document.getElementById('loader');
         const loaderProgress = document.getElementById('loader-progress');
         const loaderPercentage = document.getElementById('loader-percentage');
 
+        // Path generator for files
         const getFramePath = index => {
             return `images/hero section/ezgif-frame-${index.toString().padStart(3, '0')}.png`;
         };
 
+        // Render function based on current scroll position
         function drawCanvasFrame(fraction) {
             const targetIndex = Math.min(totalFrames - 1, Math.floor(fraction * totalFrames)) + 1;
+            
+            // Find closest preloaded frame from the keys
             const loadedKeys = Object.keys(images).map(Number).sort((a, b) => a - b);
             if (loadedKeys.length === 0) return;
             
@@ -337,10 +350,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const imgToDraw = images[closest];
             if (imgToDraw && imgToDraw.complete) {
+                // Handle canvas sizing properly
                 context.drawImage(imgToDraw, 0, 0, canvas.width, canvas.height);
             }
         }
 
+        // Scroll listener for Canvas and Text Steps
         const heroScroll = document.getElementById('hero-scroll');
         const scrollSteps = document.querySelectorAll('.scroll-step');
         
@@ -355,8 +370,10 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const fraction = maxScroll > 0 ? scrollOffset / maxScroll : 0;
             
+            // Draw Canvas
             drawCanvasFrame(fraction);
             
+            // Update Active Scroll Text Steps
             const numSteps = scrollSteps.length;
             const currentStepDecimal = fraction * numSteps;
             
@@ -380,6 +397,7 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('resize', resizeCanvas);
         window.addEventListener('scroll', updateHeroContent);
 
+        // Preload skipped frames
         framesToDownload.forEach(frameIndex => {
             const img = new Image();
             img.src = getFramePath(frameIndex);
@@ -387,21 +405,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 images[frameIndex] = img;
                 loadedCount++;
                 
+                // Update loader progress bar
                 const percent = Math.round((loadedCount / totalToLoad) * 100);
                 if (loaderProgress) loaderProgress.style.width = `${percent}%`;
                 if (loaderPercentage) loaderPercentage.textContent = `${percent}%`;
                 
+                // If the first frame is loaded, draw immediately to hide canvas black flash
                 if (frameIndex === 1) {
                     resizeCanvas();
                 }
 
+                // If loading completed, fade out loader screen
                 if (loadedCount === totalToLoad) {
                     setTimeout(() => {
                         if (loader) loader.classList.add('fade-out');
-                    }, 400); // Fast load animation under 1s
+                    }, 500);
                 }
             };
             img.onerror = () => {
+                // If frame fails, increment loaded count so loader doesn't block forever
                 loadedCount++;
                 if (loadedCount === totalToLoad) {
                     if (loader) loader.classList.add('fade-out');
@@ -409,6 +431,7 @@ document.addEventListener('DOMContentLoaded', () => {
             };
         });
 
+        // Set initial screen layout
         resizeCanvas();
     }
 
@@ -420,20 +443,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const bookingDetailsDisplay = document.getElementById('booking-details-display');
     const cancelBookingBtn = document.getElementById('btn-cancel-booking');
     const dateInput = document.getElementById('booking-date');
-    
     const toast = document.getElementById('toast-notification');
     const toastTitle = document.getElementById('toast-title');
     const toastMessage = document.getElementById('toast-message');
     const toastCloseBtn = document.getElementById('toast-close-btn');
 
+    // Prevent selecting past dates in booking picker
     if (dateInput) {
         const today = new Date();
         const dd = String(today.getDate()).padStart(2, '0');
-        const mm = String(today.getMonth() + 1).padStart(2, '0');
+        const mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
         const yyyy = today.getFullYear();
         dateInput.min = `${yyyy}-${mm}-${dd}`;
     }
 
+    // Custom success/warning toast notifications
     function showToast(title, message, isError = false) {
         if (!toast) return;
         toastTitle.textContent = title;
@@ -450,6 +474,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         toast.classList.remove('hidden');
+        
+        // Autohide after 5 seconds
         const timeoutId = setTimeout(hideToast, 5000);
         toast.dataset.timeoutId = timeoutId;
     }
@@ -466,10 +492,13 @@ document.addEventListener('DOMContentLoaded', () => {
         toastCloseBtn.addEventListener('click', hideToast);
     }
 
+    // Load active reservations from localstorage
     function displayBookings() {
         const savedBooking = localStorage.getItem('casa_fresco_booking');
         if (savedBooking) {
             const booking = JSON.parse(savedBooking);
+            
+            // Format output date nicely
             const dateObj = new Date(booking.date);
             const formattedDate = dateObj.toLocaleDateString('en-US', { 
                 weekday: 'long', 
@@ -485,7 +514,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="booking-display-row"><strong>Date:</strong> ${formattedDate}</div>
                     <div class="booking-display-row"><strong>Time:</strong> ${booking.time}</div>
                     <div class="booking-display-row"><strong>Guests:</strong> ${booking.guests} Guest(s)</div>
-                    <div class="booking-display-row"><strong>Tier:</strong> ${booking.area}</div>
+                    <div class="booking-display-row"><strong>Zone:</strong> ${booking.area}</div>
                     ${booking.notes ? `<div class="booking-display-row"><strong>Notes:</strong> ${booking.notes}</div>` : ''}
                 `;
             }
@@ -499,6 +528,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Form submit listener
     if (reservationForm) {
         reservationForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -511,305 +541,162 @@ document.addEventListener('DOMContentLoaded', () => {
             const area = document.getElementById('booking-area').value;
             const notes = document.getElementById('booking-notes').value;
 
+            // Simple validation
             if (!name || !phone || !date || !time) {
                 showToast("Booking Failed", "Please fill in all mandatory booking fields.", true);
                 return;
             }
 
             const bookingData = { name, phone, date, time, guests, area, notes };
+            
+            // Save to local storage
             localStorage.setItem('casa_fresco_booking', JSON.stringify(bookingData));
+            
+            // Update display
             displayBookings();
+            
+            // Reset form fields
             reservationForm.reset();
-            showToast("Tasting Preview Booked", "Your VIP preview session request has been submitted. Check details below!");
+            
+            showToast("Table Reserved", "We have secured your rooftop dining space. See you soon!");
         });
     }
 
+    // Cancel reservation listener
     if (cancelBookingBtn) {
         cancelBookingBtn.addEventListener('click', () => {
             localStorage.removeItem('casa_fresco_booking');
             displayBookings();
-            showToast("Booking Cancelled", "Your VIP tasting request has been cancelled.", true);
+            showToast("Booking Cancelled", "Your reservation has been cancelled successfully.", true);
         });
     }
 
+    // Initial booking check
     displayBookings();
 
     // -------------------------------------------------------------------------
-    // 6. Testimonials Hover Video Playback Action
+    // 6. Customers Review Testimonial Autoplay Carousel Slider
     // -------------------------------------------------------------------------
-    const videoTestimonials = document.querySelectorAll('.video-testimonial');
-    videoTestimonials.forEach(card => {
-        const video = card.querySelector('.video-player');
-        const playBtn = card.querySelector('.btn-play-video');
-        const thumb = card.querySelector('.video-thumb');
-
-        if (video) {
-            card.addEventListener('mouseenter', () => {
-                video.play().catch(e => console.log("Video playback interrupted:", e));
-            });
-            card.addEventListener('mouseleave', () => {
-                video.pause();
-                video.currentTime = 0;
-            });
+    const reviewsData = [
+        {
+            name: "Ananya Sharma",
+            rating: 5,
+            text: "Casa Fresco has hands down the best rooftop vibes in HSR! The Truffle Fettuccine is extremely creamy and delicious. A solid 10/10 culinary spot.",
+            avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
+        },
+        {
+            name: "Rohan Verma",
+            rating: 5,
+            text: "Loved the wood-fired pizzas, especially the Jamie's Margherita. Crust was crispy and toppings were incredibly fresh. Outstanding service too!",
+            avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
+        },
+        {
+            name: "Sophia Martinez",
+            rating: 5,
+            text: "Breathtaking sunset views from the lounge. The Hibiscus Spritz mocktail is so refreshing. It's the perfect spot to spend weekends in Bangalore.",
+            avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
         }
-    });
+    ];
 
-    // -------------------------------------------------------------------------
-    // 7. Membership Comparison Table Toggle
-    // -------------------------------------------------------------------------
-    const compareBtn = document.getElementById('compare-btn');
-    const compareTableContainer = document.getElementById('compare-table-container');
+    const slider = document.getElementById('testimonials-slider');
+    const dotsContainer = document.getElementById('slider-dots');
+    const prevBtn = document.getElementById('slider-prev');
+    const nextBtn = document.getElementById('slider-next');
+    let currentSlide = 0;
+    let autoSlideInterval;
 
-    if (compareBtn && compareTableContainer) {
-        compareBtn.addEventListener('click', () => {
-            const isHidden = compareTableContainer.classList.contains('hidden');
-            if (isHidden) {
-                compareTableContainer.classList.remove('hidden');
-                compareBtn.setAttribute('aria-expanded', 'true');
-                // Scroll table smoothly into view
-                setTimeout(() => {
-                    compareTableContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                }, 100);
-            } else {
-                compareTableContainer.classList.add('hidden');
-                compareBtn.setAttribute('aria-expanded', 'false');
-            }
-        });
-    }
+    function renderReviews() {
+        if (!slider || !dotsContainer) return;
+        
+        slider.innerHTML = '';
+        dotsContainer.innerHTML = '';
 
-    // -------------------------------------------------------------------------
-    // 8. Apple Style Horizontal Gallery Drag-to-Scroll
-    // -------------------------------------------------------------------------
-    const track = document.getElementById('gallery-track');
-    let isDown = false;
-    let startX;
-    let scrollLeft;
-
-    if (track) {
-        track.addEventListener('mousedown', (e) => {
-            isDown = true;
-            track.classList.add('dragging');
-            startX = e.pageX - track.offsetLeft;
-            scrollLeft = track.scrollLeft;
-            e.preventDefault(); // Prevent text/image selection
-        });
-
-        track.addEventListener('mouseleave', () => {
-            isDown = false;
-            track.classList.remove('dragging');
-        });
-
-        track.addEventListener('mouseup', () => {
-            isDown = false;
-            track.classList.remove('dragging');
-        });
-
-        track.addEventListener('mousemove', (e) => {
-            if (!isDown) return;
-            e.preventDefault();
-            const x = e.pageX - track.offsetLeft;
-            const walk = (x - startX) * 1.5; // Scroll speed modifier
-            track.scrollLeft = scrollLeft - walk;
-        });
-
-        // Touch support for mobile devices
-        track.addEventListener('touchstart', (e) => {
-            startX = e.touches[0].pageX - track.offsetLeft;
-            scrollLeft = track.scrollLeft;
-        }, { passive: true });
-
-        track.addEventListener('touchmove', (e) => {
-            const x = e.touches[0].pageX - track.offsetLeft;
-            const walk = (x - startX) * 1.2;
-            track.scrollLeft = scrollLeft - walk;
-        }, { passive: true });
-    }
-
-    // -------------------------------------------------------------------------
-    // 9. FAQ Collapsible Accordion
-    // -------------------------------------------------------------------------
-    const faqHeaders = document.querySelectorAll('.faq-header');
-
-    faqHeaders.forEach(header => {
-        header.addEventListener('click', () => {
-            const parent = header.parentElement;
-            const content = parent.querySelector('.faq-content');
-            const isActive = parent.classList.contains('active');
-
-            // Collapse other items (Accordion behavior)
-            document.querySelectorAll('.faq-item').forEach(item => {
-                if (item !== parent) {
-                    item.classList.remove('active');
-                    const itemContent = item.querySelector('.faq-content');
-                    if (itemContent) itemContent.style.maxHeight = '0px';
-                    const itemHeader = item.querySelector('.faq-header');
-                    if (itemHeader) itemHeader.setAttribute('aria-expanded', 'false');
-                }
-            });
-
-            // Toggle current item
-            if (isActive) {
-                parent.classList.remove('active');
-                content.style.maxHeight = '0px';
-                header.setAttribute('aria-expanded', 'false');
-            } else {
-                parent.classList.add('active');
-                content.style.maxHeight = content.scrollHeight + 'px';
-                header.setAttribute('aria-expanded', 'true');
-            }
-        });
-    });
-
-    // -------------------------------------------------------------------------
-    // 10. Micro-Interactions: Magnetic Buttons
-    // -------------------------------------------------------------------------
-    const magneticBtns = document.querySelectorAll('.magnetic-btn');
-
-    // Disable on touch devices for performance
-    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-
-    if (!isTouchDevice) {
-        magneticBtns.forEach(btn => {
-            btn.addEventListener('mousemove', (e) => {
-                const rect = btn.getBoundingClientRect();
-                const x = e.clientX - rect.left - rect.width / 2;
-                const y = e.clientY - rect.top - rect.height / 2;
-                
-                // Pull button slightly towards cursor (max 12px)
-                btn.style.transform = `translate(${x * 0.28}px, ${y * 0.28}px)`;
-            });
-
-            btn.addEventListener('mouseleave', () => {
-                btn.style.transform = 'translate(0px, 0px)';
-            });
-        });
-    }
-
-    // -------------------------------------------------------------------------
-    // 11. Micro-Interactions: 3D Card Tilt Effect
-    // -------------------------------------------------------------------------
-    const tiltCards = document.querySelectorAll('.tilt-card');
-
-    if (!isTouchDevice) {
-        tiltCards.forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                const percentX = x / rect.width;
-                const percentY = y / rect.height;
-                
-                // Calculate angles (max 10 degrees tilt)
-                const rotateX = (0.5 - percentY) * 10;
-                const rotateY = (percentX - 0.5) * 10;
-                
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
-            });
-
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
-            });
-        });
-    }
-
-    // -------------------------------------------------------------------------
-    // 12. Micro-Interactions: Dynamic Click Ripple
-    // -------------------------------------------------------------------------
-    const allClickables = document.querySelectorAll('.btn, .tab-btn, .faq-header, .nav-links a');
-    allClickables.forEach(element => {
-        element.addEventListener('click', function(e) {
-            // Only add ripple if it's a mouse click
-            if (e.clientX === 0 && e.clientY === 0) return;
+        reviewsData.forEach((review, index) => {
+            // Slide creation
+            const slide = document.createElement('div');
+            slide.className = `testimonial-slide ${index === 0 ? 'active' : ''}`;
             
-            const rect = this.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            const ripple = document.createElement('span');
-            ripple.className = 'ripple-span';
-            ripple.style.left = `${x}px`;
-            ripple.style.top = `${y}px`;
-            
-            this.appendChild(ripple);
-            
-            setTimeout(() => {
-                ripple.remove();
-            }, 600);
-        });
-    });
-
-    // -------------------------------------------------------------------------
-    // 13. Dynamic Viewport Scroll Reveals & Count Animations (Intersection Observer)
-    // -------------------------------------------------------------------------
-    const revealElements = document.querySelectorAll('.reveal-fade, .reveal-left, .reveal-right, .reveal-scale');
-    const statCards = document.querySelectorAll('.stat-number');
-
-    // Reveal Observer
-    const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const element = entry.target;
-                const delay = element.getAttribute('data-delay') || 0;
-                
-                setTimeout(() => {
-                    element.classList.add('revealed');
-                }, Number(delay));
-                
-                revealObserver.unobserve(element);
+            // Build star rating icons
+            let starsHtml = '';
+            for (let s = 0; s < review.rating; s++) {
+                starsHtml += '<i class="fa-solid fa-star"></i>';
             }
-        });
-    }, { threshold: 0.05 });
 
-    revealElements.forEach(el => revealObserver.observe(el));
+            slide.innerHTML = `
+                <div class="review-content">
+                    <i class="fa-solid fa-quote-left quote-icon"></i>
+                    <div class="review-rating">${starsHtml}</div>
+                    <p class="review-text">"${review.text}"</p>
+                    <div class="review-author">
+                        <img src="${review.avatar}" alt="${review.name}" class="author-avatar">
+                        <span class="author-name">${review.name}</span>
+                    </div>
+                </div>
+            `;
+            slider.appendChild(slide);
 
-    // Stats Counter Animation
-    let countersStarted = false;
-    const statsObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting && !countersStarted) {
-                countersStarted = true;
-                animateCounters();
-                statsObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1 });
-
-    const statsContainer = document.getElementById('stats-counters');
-    if (statsContainer) {
-        statsObserver.observe(statsContainer);
-    }
-
-    function animateCounters() {
-        statCards.forEach(counter => {
-            const target = +counter.getAttribute('data-target');
-            const duration = 2000; // 2 seconds
-            const startTime = performance.now();
-
-            function updateCount(currentTime) {
-                const elapsed = currentTime - startTime;
-                const progress = Math.min(elapsed / duration, 1);
-                
-                // Ease out cubic
-                const easeProgress = 1 - Math.pow(1 - progress, 3);
-                
-                const currentValue = Math.floor(easeProgress * target);
-                
-                // Add commas to large numbers
-                counter.textContent = currentValue.toLocaleString() + (target >= 1000 ? '+' : '');
-
-                if (progress < 1) {
-                    requestAnimationFrame(updateCount);
-                } else {
-                    counter.textContent = target.toLocaleString() + (target >= 1000 ? '+' : '');
-                }
-            }
-            requestAnimationFrame(updateCount);
+            // Dot creation
+            const dot = document.createElement('div');
+            dot.className = `dot ${index === 0 ? 'active' : ''}`;
+            dot.addEventListener('click', () => goToSlide(index));
+            dotsContainer.appendChild(dot);
         });
     }
 
+    function goToSlide(index) {
+        if (!slider) return;
+        
+        const slides = slider.querySelectorAll('.testimonial-slide');
+        const dots = dotsContainer.querySelectorAll('.dot');
+        
+        if (index >= slides.length) index = 0;
+        if (index < 0) index = slides.length - 1;
+        
+        currentSlide = index;
+        
+        // Move container width
+        slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+        
+        // Update active states
+        slides.forEach((slide, idx) => {
+            slide.classList.toggle('active', idx === currentSlide);
+        });
+        dots.forEach((dot, idx) => {
+            dot.classList.toggle('active', idx === currentSlide);
+        });
+
+        // Reset timer
+        resetAutoPlay();
+    }
+
+    function nextSlide() {
+        goToSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+        goToSlide(currentSlide - 1);
+    }
+
+    function startAutoPlay() {
+        autoSlideInterval = setInterval(nextSlide, 7000); // Auto-slide every 7s
+    }
+
+    function resetAutoPlay() {
+        clearInterval(autoSlideInterval);
+        startAutoPlay();
+    }
+
+    if (prevBtn && nextBtn) {
+        prevBtn.addEventListener('click', prevSlide);
+        nextBtn.addEventListener('click', nextSlide);
+    }
+
+    // Init Slider
+    renderReviews();
+    startAutoPlay();
+
     // -------------------------------------------------------------------------
-    // 14. Footer Newsletter Subscription
+    // 7. Footer Newsletter Subscription Simulation
     // -------------------------------------------------------------------------
     const newsletterForm = document.getElementById('newsletter-form');
     if (newsletterForm) {
@@ -817,7 +704,8 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const emailInput = newsletterForm.querySelector('input[type="email"]');
             if (emailInput) {
-                showToast("Subscribed", `Successfully subscribed ${emailInput.value} to our tasting club newsletter!`);
+                const email = emailInput.value;
+                showToast("Subscribed", `Successfully subscribed ${email} to our tasting club newsletter!`);
                 newsletterForm.reset();
             }
         });
